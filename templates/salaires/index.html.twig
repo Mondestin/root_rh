@@ -1,0 +1,250 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Salaires
+
+{% endblock %}
+{% block styles %}
+	<link
+	rel="stylesheet" href="{{asset('dist/css/styles.css')}}">
+	<!-- Select2 -->
+	<link rel="stylesheet" href="{{asset('plugins/select2/css/select2.min.css')}}">
+{% endblock %}
+{% block body %}
+	<h1>Salaires
+		<span class="badge bg-primary"></span>
+		<br>
+		<h5 class="mb-5 mt-5 ml-2">
+			<div class="col-lg-3 col-6">
+				<div class="small-box bg-primary">
+					<div class="inner">
+						<h3>30 000 €</h3>
+						<p>Disponible en caisse</p>
+					</div>
+					<div class="icon">
+						<i class="fa-solid fa-euro-sign"></i>
+					</div>
+				</div>
+			</div>
+
+		</h5>
+	</h1>
+	<div class="card card-primary card-outline">
+		<div class="card-header">
+			<div class="row col-md-12 float-left">
+				<h5>Sélectionner l'employee à payé:</h5>
+				<form class="display-contents" method="post" action="{{ path('app_salaires_find') }}">
+					<input type="hidden" name="_token" value="{{ csrf_token('mail_form') }}">
+					<div class="col-md-4">
+						<div class="card-body">
+							<div class="form-group">
+								<select class="select2 form-control p-2" name="employe" data-placeholder="Choisir un employé" style="width: 100%;" required>
+									<option value="" hidden>Choisir un employé</option>
+									{% for employee in employees %}
+										<option value="{{ employee.id }}">{{ employee.employeeName }}
+											{{ employee.employeeSurname }}</option>
+									{% endfor %}
+								</select>
+							</div>
+						</div>
+
+					</div>
+					<div class="col-md-4">
+						<div class="card-footer">
+							<div class="float-left">
+								<button type="submit" class="btn btn-primary">
+									<i class="fa-solid fa-magnifying-glass"></i>
+									Rechercher
+								</button>
+							</div>
+						</div>
+					</div>
+				</form>
+				<div class="col-md-4"></div>
+			</div>
+
+		</div>
+		<div class="card-body ">
+			<div class="card">
+				<div class="card-header">
+					<h3 class="card-title">Profile de:
+					</h3>
+				</div>
+				<!-- /.card-header -->
+				<div class="card-body p-0">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Employee Code</th>
+								<th>Nom(s) et Prénom(s)</th>
+								<th>Salaire de base</th>
+								<th>Tarif horaire</th>
+								<th>Heure travailé</th>
+								<th>Net à payé</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>{{ emp.employeeCode | default("")   }}</td>
+								<td>
+									{{ emp.employeeName | default("")  }}
+									{{ emp.employeeSurname | default("") }}
+								</td>
+								<td>
+									<strong>{{ base_salary | default("")}}
+										€</strong>
+								</td>
+								<td>
+									<strong>{{ tarif| default("")| number_format(2, '.', ',') | unit('€')}}
+									</strong>
+								</td>
+								<td>
+									-
+								</td>
+								<td>
+									-
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="col-md-12 mt-5">
+					<div class="card-footer">
+						<div class="float-right">
+
+							<button id="print" type="button" class="btn btn-primary">
+								<i class="fa-solid fa-print"></i>
+								Imprimer
+							</button>
+						</div>
+					</div>
+				</div>
+				<!-- /.card-body -->
+			</div>
+		</div>
+	</div>
+
+	<div class="row" style="display: none">
+		<div class="col-md-12" id="slip">
+			<div class="card">
+				<div class="card-body">
+
+					<div class="row">
+						<div class="col-sm-6 m-b-20">
+							<img src="{{asset('dist/img/logow.jpg')}}" class="inv-logo" alt="">
+							<ul class="list-unstyled mb-0">
+								<li>Dreamguy's Technologies</li>
+								<li>3864 Quiet Valley Lane,</li>
+								<li>Sherman Oaks, CA, 91403</li>
+							</ul>
+						</div>
+						<div class="col-sm-6 m-b-20">
+							<div class="invoice-details">
+								<h3 class="text-uppercase">Payslip #49029</h3>
+								<ul class="list-unstyled">
+									<li>Salary Month:
+										<span>March, 2019</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-12 m-b-20">
+							<ul class="list-unstyled ">
+								<li>
+									<h5 class="mb-0">
+										<strong>John Doe</strong>
+									</h5>
+								</li>
+								<li>
+									<span>Web Designer</span>
+								</li>
+								<li>Employee ID: FT-0009</li>
+								<li>Joining Date: 1 Jan 2013</li>
+							</ul>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6">
+							<div>
+								<h4 class="m-b-10">
+									<strong>Earnings</strong>
+								</h4>
+								<table class="table table-bordered">
+									<tbody>
+										<tr>
+											<td>
+												<strong>Basic Salary</strong>
+												<span class="float-end">$6500</span>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<strong>House Rent Allowance (H.R.A.)</strong>
+												<span class="float-end">$55</span>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<strong>Conveyance</strong>
+												<span class="float-end">$55</span>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<strong>Other Allowance</strong>
+												<span class="float-end">$55</span>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<strong>Total Earnings</strong>
+												<span class="float-end">
+													<strong>$55</strong>
+												</span>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<div class="col-sm-12">
+							<p>
+								<strong>Net Salary: $59698</strong>
+								(Fifty nine thousand six hundred and ninety eight only.)</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+{% block scripts %}
+	<!-- Page specific script --><!-- Select2 --><script src="{{asset('plugins/select2/js/select2.full.min.js')}}"> </script>
+	<script>
+		$(function () {
+// Add text editor
+// Initialize Select2 Elements
+$('.select2').select2();
+
+})
+	</script>
+	<!-- print js -->
+	<script src="../js/printThis.js"></script>
+	<script>
+		$(function () {
+
+$("#print").click(function () {
+$("#slip").printThis({
+loadCSS: "{{ asset('dist/css/adminlte.min.css') }}",
+removeInlineSelector: "",
+printDelay: 333,
+header: "",
+footer: "",
+base: "http://127.0.0.1:8000/",
+doctypeString: '<!DOCTYPE html>'
+});
+});
+});
+	</script>
+{% endblock %}

@@ -1,0 +1,29 @@
+<div class="col-md-3">
+	<div class="card card-primary card-outline">
+		<div class="card-header">
+			<h3 class="card-title">Formulaire de pointage</h3>
+		</div>
+		<div class="card-body p-0">
+			<ul class="nav nav-pills flex-column">
+				<li class="nav-item">
+					<h6 class="p-2 pl-4">Département:
+						<b>{{ dept_name}}</b>
+					</h6>
+				</li>
+				<li class="nav-item">
+					<h6 class="p-2 pl-4">Manager:
+						<b>{{ manager }}</b>
+					</h6>
+				</li>
+				<li class="nav-item">
+					<h6 class="p-2 pl-4">Date et heure:
+						<b>{{ "now"|date("d-m-Y H:i:s") }}</b>
+					</h6>
+				</li>
+				{{ include('pointages/_form.html.twig') }}
+
+			</ul>
+		</li>
+	</div>
+	<!-- /.card-body -->
+</div></div><!-- /.col -->

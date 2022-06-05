@@ -1,0 +1,21 @@
+#calendar {
+    background: white;
+    border: 1px solid #d1d1d1;
+}
+
+.fc-event {
+    cursor: grab;
+}
+
+.fa-square {
+    cursor: pointer;
+}
+
+#cardEventEdit {
+    display: none;
+}
+
+.color-palette {
+    padding: 0;
+    border: 0;
+}

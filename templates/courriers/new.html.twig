@@ -1,0 +1,51 @@
+<!-- New Message Modal -->
+<div class="modal fade" id="newMessageModal" tabindex="-1" role="dialog" aria-labelledby="newMessageModalTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+		<div class="modal-content card-primary card-outline">
+			<div class="modal-header">
+				<h5 class="modal-title" id="newMessageModalTitle">Nouveau Message</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="col-md-12">
+				<form class="display-contents" method="post" action="{{ path('app_courriers_new') }}">
+					<input
+					type="hidden" name="_token" value="{{ csrf_token('mail_form') }}">
+					<!-- /.card-header -->
+					<div class="card-body">
+						<div class="form-group">
+							<select class="select2 form-control" name="send_to[]" multiple="multiple" data-placeholder="A/Destinataire" style="width: 100%;" required>
+								{% for employee in employees %}
+									<option value="{{ employee.employeeEmail }}">{{ employee.employeeName }}
+										{{ employee.employeeSurname }}</option>
+								{% endfor %}
+							</select>
+						</div>
+						<div class="form-group">
+							<input class="form-control" name="mail_object" placeholder="Objet:" required>
+						</div>
+						<div class="form-group">
+							<textarea name="mail_body" class="form-control" style="height: 300px" placeholder="Ecrivez votre message ici" required></textarea>
+						</div>
+					</div>
+					<!-- /.card-body -->
+					<div class="card-footer">
+						<div class="float-right">
+
+							<button type="submit" class="btn btn-primary">
+								Envoyer
+								<i class="fa-solid fa-paper-plane"></i>
+							</button>
+						</div>
+
+					</div>
+					<!-- /.card-footer -->
+
+					<!-- /.card -->
+				</form>
+			</div>
+
+		</div>
+	</div>
+</div>

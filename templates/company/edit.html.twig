@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Entreprise
+{% endblock %}
+{% block header %}
+	Modifier l'entreprise
+{% endblock %}
+{% block body %}
+	<a class="mb-5" href="{{ path('app_company_index') }}">
+		<button class="btn btn-sm btn-outline-primary">
+			<i class="fas fa-arrow-left"></i>
+			Retour à la liste</button>
+	</a>
+	{{ include('company/_form.html.twig', {'button_label': 'Valider'}) }}
+{% endblock %}

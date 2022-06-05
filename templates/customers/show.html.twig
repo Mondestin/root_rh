@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Clients
+{% endblock %}
+{% block header %}
+	Clients
+{% endblock %}
+{% block body %}
+	<a class="mb-5" href="{{ path('app_customers_index') }}">
+		<button class="btn btn-sm btn-outline-primary">
+			<i class="fas fa-arrow-left"></i>
+			Retour à la liste</button>
+	</a>
+	<div class="card mt-2 w-25">
+		<ul class="list-group list-group-flush">
+			<li class="list-group-item item-show">
+				Code
+				<span class="badge bg-primary">{{ customer.customerCode | upper}}</span>
+			</li>
+			<li class="list-group-item item-show">
+				Société
+				<span class="badge bg-primary">
+					{{ customer.companyName }}
+				</span>
+			</li>
+			<li class="list-group-item item-show">
+				Nom(s)
+				<span class="badge bg-primary">
+					{{ customer.customerName }}
+				</span>
+			</li>
+			<li class="list-group-item item-show">
+				Prénom(s)
+				<span class="badge bg-primary">
+					{{ customer.customerSurname }}
+				</span>
+			</li>
+			<li class="list-group-item item-show">
+				Email
+				<span class="badge bg-primary">
+					{{ customer.customerEmail }}
+				</span>
+			</li>
+			<li class="list-group-item item-show">
+				Téléphone
+				<span class="badge bg-primary">
+					{{ customer.customerPhoneNumber }}
+				</span>
+			</li>
+			<li class="list-group-item item-show">
+				Adresse
+				<span class="badge bg-primary">
+					{{ customer.customerAdress }}
+				</span>
+			</li>
+		</ul>
+	</div>
+	<a href="{{ path('app_customers_edit', {'id': customer.id}) }}">
+		<button class="btn btn-warning btn-sm">
+			<i class="far fa-edit"></i>
+			Modifier</button>
+	</a>
+	{{ include('customers/_delete_form.html.twig') }}
+{% endblock %}
+{% block scripts %}
+	<script src="{{asset('js/delete-confirm.js')}} "></script>
+{% endblock %}

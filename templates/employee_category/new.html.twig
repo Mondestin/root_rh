@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Catégorie des employés
+{% endblock %}
+{% block header %}Créer une Categorie
+{% endblock %}
+{% block body %}
+
+	<a class="btn btn-sm btn-outline-primary" href="{{ path('employee_category_index') }}">
+		<i class="fas fa-arrow-left"></i>
+		Retour à la liste</a>
+	{{ include('employee_category/_form.html.twig', {'button_label': 'Valider'}) }}
+
+
+{% endblock %}

@@ -1,0 +1,38 @@
+{# Modal form to modify infos #}
+<div class="modal fade" id="modify{{ check.id }}">
+	<div class="modal-dialog ">
+		<div class="modal-content card-primary card-outline">
+			<div class="modal-header">Gérer le pointage
+			</h4>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		<div class="modal-body form{{check.id}}">
+			<form id="form{{check.id}}" class="display-contents" method="post" action="{{ path('app_gestion_pointages_edit', {'id': check.id}) }}">
+				<input type="hidden" name="_token" value="{{ csrf_token('edit' ~ check.id) }}">
+				<div class="col-md-12 mb-3">
+					<label for="comments">Commentaires</label>
+					<textarea type="text" name="comments" value="" class="form-control" cols="10" rows="4" required></textarea>
+				</div>
+				<div class="col-md-12 mb-3">
+					<label for="validate">Commentaires</label>
+					<select class="form-control" id="validate" name="validate" required>
+						<option value="Validé">Validé</option>
+						<option value="Rejété">Rejété</option>
+					</select>
+				</div>
+			</form>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-danger" data-dismiss="modal">
+				<i class="fa-solid fa-xmark"></i>
+				Fermer</button>
+			<a data-id="form{{check.id}}" class="btn btn-success modifyData">
+				<i class="fa-solid fa-check"></i>
+				Valider</a>
+		</div>
+	</div>
+	<!-- /.modal-content -->
+</div>
+<!-- /.modal-dialog --></div><!-- /.modal -->

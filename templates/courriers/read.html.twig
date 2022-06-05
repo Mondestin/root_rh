@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+{% block title %}Corriers
+{% endblock %}
+{% block styles %}
+	<!-- summernote -->
+	<link rel="stylesheet" href="{{asset('plugins/summernote/summernote-bs4.min.css')}}">
+{% endblock %}
+{% block header %}Courriers
+{% endblock %}
+{% block body %}
+	<!-- Main content -->
+	<section class="content">
+		<div class="row">
+			{{ include('courriers/sidebar.html.twig') }}
+			<div class="col-md-9">
+				<div class="card card-primary card-outline">
+					<div class="card-header">
+						<h3 class="card-title">Lecture du message</h3>
+					</div>
+					<!-- /.card-header -->
+					<div class="card-body p-0">
+						<div class="mailbox-read-info">
+							<h6>
+								<b>Sujet:</b>
+								{{ mail.getMailObject }}
+							</h6>
+							<h6>
+								<b>De:</b>
+								{{ mail.getSendFrom }}
+								<span class="mailbox-read-time float-right">{{ mail.getSendTime ? mail.getSendTime|date('d-m-Y, H:m:s') : '' }}</span>
+							</h6>
+						</div>
+						<!-- /.mailbox-read-info -->
+						<div class="mailbox-controls with-border text-center">
+							<div class="mailbox-controls">
+								<div class="btn-group">
+									<button type="button" class="btn btn-default btn-sm" title="Répondre">
+										<i class="fas fa-reply"></i>
+									</button>
+								</div>
+							</div>
+
+						</div>
+						<!-- /.mailbox-controls -->
+						<div class="mailbox-read-message text-left">
+							<textarea name="" id="" cols="140" rows="10" style="border: none!important; resize: none;" disabled>{{ the_mail.getMailBody }}
+							</textarea>
+
+						</div>
+						<!-- /.mailbox-read-message -->
+					</div>
+					<!-- /.card-body -->
+					<!-- /.card-footer -->
+					<div class="card-footer">
+						<div class="float-right">
+							<button type="button" class="btn btn-default">
+								<i class="fas fa-reply"></i>
+								Répondre</button>
+
+						</div>
+					</div>
+					<!-- /.card-footer -->
+				</div>
+				<!-- /.card -->
+			</div>
+
+			<!-- /.col -->
+		</div>
+		<!-- /.row -->
+	</section>
+	<!-- /.content -->
+	{{ include('courriers/new.html.twig') }}
+{% endblock %}
+{% block scripts %}
+	<!-- Page specific script -->
+	<script src="{{asset('plugins/summernote/summernote-bs4.min.js')}}"></script>
+	<script>
+		$(function () { // Add text editor
+$('#compose-textarea').summernote()
+})
+	</script>
+{% endblock %}

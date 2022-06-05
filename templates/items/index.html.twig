@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sous tâches de
+	{{ task.name }}
+{% endblock %}
+{% block styles %}
+	{# Datatables styles #}
+	{% include "datatable/styles.html.twig" %}
+{% endblock %}
+{% block body %}
+	<h1>Sous tâches de:
+		<span class="badge bg-primary">{{ task.name }}</span>
+		<br>
+		<h5 class="mb-5 mt-5 ml-2">Progréssion de la tâche:
+			<div class="progress col-md-6">
+				<div class="progress-bar bg-primary progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="{{ total }}" style="width: {{ progress }}%">{{ progress }}%</div>
+			</div>
+
+		</h5>
+	</h1>
+	<div class="card card-primary card-outline">
+		<div class="card-header">
+			<a class="mb-4" href="{{ path('app_tasks_index') }}">
+				<button class="btn btn-outline-primary">
+					<i class="fas fa-arrow-left"></i>
+					Retour aux Tasks
+				</button>
+			</a>
+			<a class="btn btn-success mb-4 mt-2" href="{{ path('app_items_new',{'task_id': task_id}) }}">
+				<i class="fas fa-plus-circle"></i>
+				Nouvelle entrée</a>
+
+		</div>
+		<div class="card-body ">
+			<table id="datatable" class="table table-bordered table-striped">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Desciption</th>
+						<th>Status</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for item in items %}
+						<tr>
+							<td>{{ item.name }}</td>
+							<td>{{ item.desciption }}</td>
+							<td>
+								{% if item.status == "Terminé" %}
+									{% set bg = "success" %}
+								{% else %}
+									{% set bg = "warning" %}
+								{% endif %}
+								<span class="badge bg-{{bg}}">
+									{{ item.status }}
+
+								</span>
+							</td>
+							<td>
+								<a href="{{ path('app_items_edit', {'id': item.id,'task_id': task_id}) }}">
+									<button type="button" class="btn btn-warning btn-sm edit-btn">
+										<i class="fas fa-edit"></i>
+										Modifier</button>
+								</a>
+								{{ include('items/_delete_form.html.twig') }}
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="5">aucun enregistrement</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+{% endblock %}
+{% block scripts %}
+	{# Datatables scripts #}
+	{{ include('datatable/scripts.html.twig') }}
+	<script src="{{asset('js/delete-confirm.js')}} "></script>
+{% endblock %}

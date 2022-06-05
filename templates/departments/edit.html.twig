@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Departments{% endblock %}
+{% block header %}Modifier département{% endblock %}
+{% block body %}
+<a class="mb-5" href="{{ path('app_departments_index') }}">
+    <button class="btn btn-sm btn-outline-primary">
+        <i class="fas fa-arrow-left"></i>
+        Retour à la liste</button>
+</a>
+{{ include('departments/_form.html.twig', {'button_label': 'Valider'}) }}
+{% endblock %}

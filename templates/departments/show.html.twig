@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Departements{% endblock %}
+{% block header %}Département{% endblock %}
+{% block body %}
+<a class="mb-5" href="{{ path('app_departments_index') }}">
+    <button class="btn btn-sm btn-outline-primary">
+        <i class="fas fa-arrow-left"></i>
+        Retour à la liste</button>
+</a>
+<div class="card mt-2 w-25">
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item item-show">
+            Designation
+            <span class="badge bg-primary">{{ department.departmentName |upper }}</span>
+        </li>
+        <li class="list-group-item item-show">
+            Description
+            <span class="badge bg-primary">{{ department.departmentDesc |upper }}</span>
+        </li>
+    </ul>
+       
+</div>
+<a href="{{ path('app_departments_edit', {'id': department.id}) }}">
+    <button class="btn btn-warning btn-sm">
+        <i class="far fa-edit"></i>
+        Modifier</button>
+</a>
+{{ include('departments/_delete_form.html.twig') }}
+{% endblock %}
+{% block scripts %}
+<script src="{{asset('js/delete-confirm.js')}} "></script>
+{% endblock %}

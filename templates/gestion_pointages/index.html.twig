@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des Pointages
+{% endblock %}
+{% block styles %}
+	{# Datatables styles #}
+	{% include "datatable/styles.html.twig" %}
+{% endblock %}
+{% block header %}
+	Gestion des pointages
+{% endblock %}
+{% block body %}
+
+	<div class="card card-primary card-outline">
+		<div class="card-header">
+			<h3 class="card-title">Liste des employés que vous controllez</h3>
+		</div>
+		<!-- /.card-header -->
+		<div class="card-body">
+			<table id="datatable" class="card-secondary table table-bordered table-striped">
+				<thead>
+					<tr>
+						<th style="width: 10px">#</th>
+						<th>Numéro de l'employé</th>
+						<th>Date</th>
+						<th>Heure de début</th>
+						<th>Heure de fin</th>
+						<th>Justification</th>
+						<th>Commentaire</th>
+						<th>Statut</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{# Mondestin// display all user's checks #}
+					{% set no = 0 %}
+					{% for check in checks %}
+						{% set no = no + 1 %}
+						<tr>
+							<td>
+								{{ no }}
+							</td>
+							<td>
+								{{ check.getEmployeeId }}
+							</td>
+							<td>{{ check.getPointingDate ? check.getPointingDate|date('d-m-Y') : '' }}</td>
+							<td>{{ check.getStartTime ? check.getStartTime|date('H:i:s') : '' }}</td>
+							<td>{{ check.getEndTime ? check.getEndTime|date('H:i:s') : '' }}</td>
+							<td>
+								{{ check.justify }}
+							</td>
+							<td>
+								{{ check.comments }}
+							</td>
+
+							<td>
+								{% if check.validate == "Validé" %}
+									{% set bg = "success" %}
+								{% else %}
+									{% set bg = "warning" %}
+								{% endif %}
+								<span class="badge bg-{{bg}}">{{ check.validate }}</span>
+							</td>
+							<td>
+								<a href="#" class="btn btn-warning btn-sm" title="Apporter des modifications" data-toggle="modal" data-target="#modify{{ check.id }}">
+									<i class="fas fa-edit"></i>
+									Modifier
+								</a>
+								{{ include('gestion_pointages/_form.html.twig') }}
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+		<!-- /.card-body -->
+	</div><!-- /.card -->{% endblock %}
+{% block scripts %}{# Datatables scripts #}{{ include('datatable/scripts.html.twig')
+}}
+	<script src="{{asset('js/gestion-pointages.js')}} "></script>
+{% endblock %}

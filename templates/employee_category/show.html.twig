@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Catégorie des employés
+{% endblock %}
+{% block header %}
+Détails de la catégorie
+{% endblock %}
+{% block body %}
+<a class="mb-5" href="{{ path('employee_category_index') }}">
+	<button class="btn btn-sm btn-outline-primary">
+		<i class="fas fa-arrow-left"></i>
+		Retour à la liste</button>
+</a>
+<div class="card mt-2 w-25" >
+	<ul class="list-group list-group-flush">
+		<li class="list-group-item item-show">
+			Designation
+			<span class="badge bg-primary">{{ employee_category.name | upper}}</span>
+		</li>
+		<li class="list-group-item item-show">Salaire de base (net mensuel)
+			<span class="badge bg-primary">{{ employee_category.baseSalary | unit('€') }}</span>
+		</li>
+		<li class="list-group-item item-show">Heures de travail hebdomadaire
+			<span class="badge bg-primary">{{ employee_category.defaultHour | unit('h') }}</span>
+		</li>
+		<li class="list-group-item item-show">Tarif horaire
+			<span class="badge bg-primary">{{ employee_category.hourlyRate | number_format(2, '.', ',') | unit('€/h') }}</span>
+		</li>
+	</ul>
+</div>
+<a href="{{ path('employee_category_edit', {'id': employee_category.id}) }}">
+	<button class="btn btn-warning btn-sm">
+		<i class="far fa-edit"></i>
+		Modifier</button>
+</a>
+{{ include('employee_category/_delete_form.html.twig') }}{% endblock %}
+
+{% block scripts %}
+<script src="{{asset('js/delete-confirm.js')}} "></script>
+{% endblock %}

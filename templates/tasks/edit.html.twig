@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier Tasks
+{% endblock %}
+{% block header %}Modifier la tâche
+{% endblock %}
+{% block body %}
+	<a class="mb-5" href="{{ path('app_tasks_index') }}">
+		<button class="btn btn-sm btn-outline-primary">
+			<i class="fas fa-arrow-left"></i>
+			Retour à la liste</button>
+	</a>
+	{{ include('tasks/_form.html.twig', {'button_label': 'Valider'}) }}
+{% endblock %}

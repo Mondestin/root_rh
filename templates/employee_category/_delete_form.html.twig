@@ -1,0 +1,7 @@
+<form id="form{{employee_category.id}}" class="display-contents" method="post" action="{{ path('employee_category_delete', {'id': employee_category.id}) }}">
+	<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ employee_category.id) }}">
+	<a data-id="form{{employee_category.id}}" class="delete-data btn btn-danger btn-sm delete-btn" title="Supprimer">
+		<i class="fas fa-trash"></i>
+        Supprimer
+    </a>
+</form>

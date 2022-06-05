@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Employee
+{% endblock %}
+{% block header %}Créer un employé
+{% endblock %}
+{% block body %}
+	<a href="{{ path('app_employee_index') }}">
+		<button class="btn btn-sm btn-outline-primary">
+			<i class="fas fa-arrow-left"></i>
+			Retour à la liste</button>
+	</a>
+	{{ include('employee/_form.html.twig') }}
+
+
+{% endblock %}

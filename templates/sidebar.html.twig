@@ -1,0 +1,160 @@
+<!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #1c1c1c;">
+	<div
+		class="sidebar">
+		<!-- Brand Logo -->
+		<a href="{{path('app_home')}}" class="brand-link">
+			<span class="brand-text font-weight-light">Root HR</span>
+		</a>
+		<!-- Sidebar -->
+		<!-- Sidebar user panel (optional) -->
+		<div class="user-panel mt-3 pb-3 mb-3 d-flex">
+			<div class="image">
+				<img src="{{asset('dist/img/user.png')}}" class="img-circle elevation-2" alt="User Image">
+			</div>
+			<div class="info">
+				<a href="#" class="d-block">{{app.user.username}}</a>
+			</div>
+		</div>
+		<!-- Sidebar Menu -->
+		<nav class="">
+			<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+				{% if is_granted('ROLE_MANAGER','ROLE_ADMIN')  %}
+					<li class="nav-item">
+						<a href="{{path('app_home')}}" class="nav-link dashboard {% if (app.request.attributes.get('_route') == 'app_home')%}active{% endif %}">
+
+							<i class="nav-icon fas fa-tachometer-alt"></i>
+							<p>
+								Dashboard
+							</p>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a href="{{path('app_departments_index')}}" class="nav-link {{['app_departments_'] | appendStyle('active')}}">
+							<i class="nav-icon fa-solid fa-people-roof"></i>
+							<p>
+								Departements
+							</p>
+						</a>
+					</li>
+				{% endif %}
+				{% if is_granted('ROLE_MANAGER','ROLE_ADMIN')  %}
+					<li class="nav-item {{['app_employee', 'employee_category'] | appendStyle('menu-open menu-is-opening')}}">
+						<a href="#" class="nav-link {{['app_employee', 'employee_category'] | appendStyle('active')}}">
+							<i class="nav-icon fas fa-user-tie"></i>
+							<p>
+								Employés
+								<i class="fas fa-angle-left right"></i>
+							</p>
+						</a>
+						<ul class="nav nav-treeview" style="display: none; {{['app_employee', 'employee_category'] | appendStyle('display: block;')}}">
+							<li class="nav-item">
+								<a href="{{path('app_employee_index')}}" class="nav-link {{['app_employee'] | appendStyle('active')}}">
+									<i class="fas fa-cog nav-icon"></i>
+									<p>Gérer</p>
+								</a>
+							</li>
+							{% if is_granted('ROLE_ADMIN')  %}
+								<li class="nav-item">
+									<a href="{{path('employee_category_index')}}" class="nav-link {{['employee_category'] | appendStyle('active')}}">
+										<i class="fas fa-sitemap nav-icon"></i>
+										<p>Catégories</p>
+									</a>
+								</li>
+							{% endif %}
+						</ul>
+					</li>
+				{% endif %}
+				{% if is_granted('ROLE_MANAGER','ROLE_ADMIN')  %}
+					<li class="nav-item">
+						<a href="{{path('app_salaires')}}" class="nav-link {{['app_salaires'] | appendStyle('active')}}">
+							<i class="nav-icon  fa-solid fa-money-bill-trend-up"></i>
+
+							<p>
+								Salaires
+							</p>
+						</a>
+					</li>
+
+					<li class="nav-item">
+						<a href="{{path('app_customers_index')}}" class="nav-link {{['app_customers_'] | appendStyle('active')}}">
+							<i class="nav-icon fas fa-user-group"></i>
+							<p>
+								Clients
+							</p>
+						</a>
+					</li>
+				{% endif %}
+				<li class="nav-item {{['app_pointages_', 'app_gestion_pointages'] | appendStyle('menu-open menu-is-opening')}}">
+					<a href="" class="nav-link pointages {{['app_pointages_', 'app_gestion_pointages'] | appendStyle('active')}}">
+						<i class="nav-icon fas fa-building"></i>
+						<p>
+							Pointages
+							<i class="fas fa-angle-left right"></i>
+						</p>
+					</a>
+					<ul class="nav nav-treeview">
+						{% if is_granted('ROLE_MANAGER','ROLE_ADMIN')  %}
+							<li class="nav-item">
+								<a href="{{path('app_gestion_pointages')}}" class="nav-link {{['app_gestion_pointages'] | appendStyle('active')}}">
+									<i class="nav-icon fa-solid fa-user-gear"></i>
+									<p>Gérer les pointages</p>
+								</a>
+							</li>
+						{% endif %}
+						<li class="nav-item">
+							<a href="{{path('app_pointages_index')}}" class="nav-link {{['app_pointages_'] | appendStyle('active')}}">
+								<i class="fa-solid fa-calendar-check ml-2 mr-2"></i>
+								<p>Vos pointages</p>
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li class="nav-item">
+					<a href="{{path('app_tasks_index')}}" class="nav-link {{['app_tasks_','app_items_'] | appendStyle('active')}}">
+						<i class="nav-icon fas fa-tasks"></i>
+						<p>
+							Tâches
+						</p>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a href="{{path('planning_index')}}" class="nav-link {{['planning'] | appendStyle('active')}}">
+						<i class="nav-icon fas fa-calendar-alt"></i>
+						<p>
+							Plannings
+						</p>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a href="{{path('app_courriers')}}" class="nav-link {{['app_courriers'] | appendStyle('active')}}">
+						<i class="nav-icon fas fa-mail-bulk"></i>
+						<p>
+							Courriers
+						</p>
+					</a>
+				</li>
+				{% if is_granted('ROLE_ADMIN') %}
+					<li class="nav-item">
+						<a href="{{path('app_user_index')}}" class="nav-link {{['app_user_'] | appendStyle('active')}}">
+							<i class="nav-icon fas fa-users-cog"></i>
+							<p>
+								Utilisateurs
+							</p>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a href="{{path('app_company_index')}}" class="nav-link {{['app_company_'] | appendStyle('active')}}">
+							<i class="nav-icon fas fa-cogs"></i>
+							<p>
+								Réglages
+							</p>
+						</a>
+					</li>
+				{% endif %}
+			</ul>
+		</nav>
+		<!-- /.sidebar-menu -->
+	</div>
+	<!-- /.sidebar -->
+</aside>

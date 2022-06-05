@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Clients{% endblock %}
+{% block header %}
+Modifier le client
+{% endblock %}
+{% block body %}
+<a class="mb-5" href="{{ path('app_customers_index') }}">
+    <button class="btn btn-sm btn-outline-primary">
+        <i class="fas fa-arrow-left"></i>
+        Retour à la liste</button>
+</a>
+{{ include('customers/_form.html.twig', {'button_label': 'Valider'}) }}
+{% endblock %}

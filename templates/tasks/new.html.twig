@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle Tasks
+{% endblock %}
+{% block header %}Créer une tâche
+{% endblock %}
+{% block body %}
+	<a class="mb-5" href="{{ path('app_tasks_index') }}">
+		<button class="btn btn-sm btn-outline-primary">
+			<i class="fas fa-arrow-left"></i>
+			Retour à la liste</button>
+	</a>
+	{{ include('tasks/_form.html.twig') }}
+
+{% endblock %}

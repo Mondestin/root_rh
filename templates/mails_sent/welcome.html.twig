@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width">
+		<title>Bienvenu parmis nous</title>
+		<style>
+			body {
+				margin: 0;
+				padding: 0;
+				background-color: #f3f3f3;
+				font-family: Helvetica, Arial, sans-serif;
+			}
+			h1 {
+				background-color: #264459;
+				color: #ffffff;
+				padding: 30px 0 50px;
+				font-weight: normal;
+			}
+			hr {
+				border: none;
+				border-top: 3px solid #264459;
+				margin: 20px;
+			}
+			.container {
+				background-color: #fefefe;
+				width: 580 px;
+				margin: 0 auto;
+			}
+			.bottom {
+				background-color: #efefee;
+			}
+			.block {
+				margin: 0;
+				padding: 10px 20px 20px;
+			}
+			.logo {
+				width: 100%;
+			}
+			.text-center {
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="body">
+			<div class="container">
+				<div class="content">
+					<h1 class="text-center">Bienvenu chez  Mr/Mme:
+						{{ employee.employeeName }}
+						{{ employee.employeeSurname }}
+					</h1><br><br>
+					<p class="block">
+						Heureux de vous comptez parmis nous!
+						<br><br>
+						Vous êtes enregistré avec l'identifiant:
+						<br>
+						Email:
+						{{ employee.employeeEmail }}
+						<br>
+
+						Mot de passe:
+						{{ password }}!
+						<br><br>
+
+						Ces informations sont strictement confidentiel veuillez ne les partager.
+					</p><br>
+				</div>
+				<div class="footer">
+					<p class="block">
+						Cordialement,
+						<br>
+						L'equipe de
+						<em>ROOT_HR</em>
+					</p>
+					{# <img src="{{ email.image('@images/logo_estiam.png') }}" alt="Logo"> #}
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

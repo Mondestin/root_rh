@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard
+{% endblock %}
+{% block header %}
+	Tableau de bord
+{% endblock %}
+{% block body %}
+	<div class="row">
+		<div class="col-lg-3 col-6">
+
+			<div class="small-box bg-info">
+				<div class="inner">
+					<h3>{{dashboard.nbEmployee}}</h3>
+					{% if dashboard.nbEmployee < 2 %}
+						<p>Employé enregistré</p>
+					{% else %}
+						<p>Employés enregistrés</p>
+					{% endif %}
+				</div>
+				<div class="icon">
+					<i class="ion ion-bag"></i>
+				</div>
+				<a href="{{ path('app_employee_index') }}" class="small-box-footer">Plus d'info
+					<i class="fas fa-arrow-circle-right"></i>
+				</a>
+			</div>
+		</div>
+
+		<div class="col-lg-3 col-6">
+			<div class="small-box bg-warning">
+				<div class="inner">
+					<h3>€{{dashboard.salaryAvg | number_format(2, ',', '.')}}</h3>
+					<p>Salaire en moyenne</p>
+				</div>
+				<div class="icon">
+					<i class="ion ion-pie-graph"></i>
+				</div>
+				<a href="{{path('employee_category_index')}}" class="small-box-footer">Plus d'info
+					<i class="fas fa-arrow-circle-right"></i>
+				</a>
+			</div>
+		</div>
+
+		<div class="col-lg-3 col-6">
+
+			<div class="small-box bg-success">
+				<div class="inner">
+					<h3>{{dashboard.nbDepartment}}</h3>
+					{% if dashboard.nbDepartment < 2 %}
+						<p>Département dans l'entreprise</p>
+					{% else %}
+						<p>Départements dans l'entreprise</p>
+					{% endif %}
+				</div>
+				<div class="icon">
+					<i class="ion ion-stats-bars"></i>
+				</div>
+				<a href="{{path('app_departments_index')}}" class="small-box-footer">Plus d'info
+					<i class="fas fa-arrow-circle-right"></i>
+				</a>
+			</div>
+		</div>
+
+		<div class="col-lg-3 col-6">
+
+			<div class="small-box bg-danger">
+				<div class="inner">
+					<h3>{{dashboard.nbCustomer}}</h3>
+					{% if dashboard.nbCustomer < 2 %}
+						<p>Client enregistré</p>
+					{% else %}
+						<p>Clients enregistrés</p>
+					{% endif %}
+				</div>
+				<div class="icon">
+					<i class="ion ion-person-add"></i>
+				</div>
+				<a href="{{path('app_customers_index')}}" class="small-box-footer">Plus d'info
+					<i class="fas fa-arrow-circle-right"></i>
+				</a>
+			</div>
+		</div>
+	</div>
+	<hr>
+
+{% endblock %}

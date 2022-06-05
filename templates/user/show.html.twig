@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Utilisateur
+{% endblock %}
+{% block header %}
+Utilisateurs
+{% endblock %}
+{% block body %}
+<a class="mb-5" href="{{ path('app_user_index') }}">
+	<button class="btn btn-sm btn-outline-primary">
+		<i class="fas fa-arrow-left"></i>
+		Retour à la liste</button>
+</a>
+<div class="card mt-2 w-25">
+	<ul class="list-group list-group-flush">
+		<li class="list-group-item item-show">
+			Nom d'utilisateur
+			<span class="badge bg-primary">
+				{{ user.username }}
+			</span>
+		</li>
+		<li class="list-group-item item-show">
+			Roles
+			<span class="badge bg-primary">
+				{{ user.roles ? user.roles|json_encode : '' }}
+			</span>
+		</li>
+		<li class="list-group-item item-show">
+			Email
+			<span class="badge bg-primary">
+				{{ user.email }}
+			</span>
+		</li>
+	</ul>
+</div>
+<a href="{{ path('app_user_edit', {'id': user.id}) }}">
+	<button class="btn btn-warning btn-sm">
+		<i class="far fa-edit"></i>
+		Modifier</button>
+</a>
+
+{{ include('user/_delete_form.html.twig') }}
+{% endblock %}
+{% block scripts %}
+<script src="{{asset('js/delete-confirm.js')}} "></script>
+{% endblock %}

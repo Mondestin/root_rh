@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Catégorie des employés
+{% endblock %}
+{% block header %}
+	Modifier la catégorie de l'employé
+{% endblock %}
+
+{% block body %}
+	<a class="mb-5" href="{{ path('employee_category_index') }}">
+		<button class="btn btn-sm btn-outline-primary">
+			<i class="fas fa-arrow-left"></i>
+			Retour à la liste</button>
+	</a>
+	{{ include('employee_category/_form.html.twig', {'button_label': 'Valider'}) }}
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tasks
+{% endblock %}
+{% block header %}Tâches
+{% endblock %}
+{% block body %}
+<a class="mb-5" href="{{ path('app_tasks_index') }}">
+	<button class="btn btn-sm btn-outline-primary">
+		<i class="fas fa-arrow-left"></i>
+		Retour à la liste</button>
+</a>
+<div class="card mt-2 w-25" >
+	<ul class="list-group list-group-flush">
+		<li class="list-group-item item-show">
+			Nom
+			<span class="badge bg-primary">
+				{{ task.name }}
+			</span>
+		</li>
+		<li class="list-group-item item-show">
+			Description
+			<span class="badge bg-primary">
+				{{ task.description }}
+			</span>
+		</li>
+		<li class="list-group-item item-show">
+			Prix
+			<span class="badge bg-primary">
+				{{ task.price | unit('€') }}
+			</span>
+		</li>
+		<li class="list-group-item item-show">
+			Date de début
+			<span class="badge bg-primary">
+				{{ task.startDate ? task.startDate|date('Y-m-d') : '' }}
+			</span>
+		</li>
+		<li class="list-group-item item-show">
+			Date de fin
+			<span class="badge bg-primary">
+				{{ task.endDate ? task.endDate|date('Y-m-d') : '' }}
+			</span>
+		</li>
+		<li class="list-group-item item-show">
+			Statut
+			<span class="badge bg-primary">
+				{{ task.status }}
+			</span>
+		</li>
+	</ul>
+</div>
+<a href="{{ path('app_tasks_edit', {'id': task.id}) }}">
+	<button class="btn btn-warning btn-sm">
+		<i class="far fa-edit"></i>
+		Modifier</button>
+</a>
+{{ include('tasks/_delete_form.html.twig') }}
+{% endblock %}
+{% block scripts %}
+<script src="{{asset('js/delete-confirm.js')}} "></script>
+{% endblock %}

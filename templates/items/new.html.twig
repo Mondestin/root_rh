@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle sous tâche
+{% endblock %}
+
+{% block body %}
+	<h1>Nouvelle sous tâche</h1>
+	<a href="{{ path('app_items_index',{'task_id': task_id}) }}">
+		<button class="btn btn-sm btn-outline-primary">
+			<i class="fas fa-arrow-left"></i>
+			Retour à la liste</button>
+	</a>
+	{{ include('items/_form.html.twig') }}
+
+
+{% endblock %}

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>
+			{% block title %}
+				/ Root Management
+			{% endblock %}
+		</title>
+		<link
+		rel="icon" href="{{asset('dist/img/logow.jpg')}}" type="image/ico"/>
+		<!-- Google Font: Source Sans Pro -->
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
+		<link
+		rel="stylesheet" href="{{asset('dist/css/adminlte.min.css')}}">
+		<!-- SweetAlert2 -->
+		<link
+		rel="stylesheet" href="{{asset('plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">
+		<!-- Toastr -->
+		<link
+		rel="stylesheet" href="{{asset('plugins/toastr/toastr.min.css') }}">
+		<!-- Jquery confirm css -->
+		<link
+		rel="stylesheet" href="{{asset('https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css')}}">
+		<!-- main css -->
+		<link href="{{ asset('css/app.css') }}" type="text/css" rel="stylesheet"/> {% block styles %}{% endblock %}
+		<!-- web pack encore styles -->
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+		{% endblock %}
+	</head>
+
+	<body class="hold-transition sidebar-mini layout-fixed">
+		<div class="wrapper">
+			{# <div class="preloader flex-column justify-content-center align-items-center" >
+																					<!-- <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60" /> -->
+																					Root HR LOGO
+																				</div> #}
+			<!-- Navbar -->
+				<nav
+				class="main-header navbar navbar-expand navbar-white navbar-light"> <!-- Left navbar links -->
+				<ul class="navbar-nav">
+					<li class="nav-item">
+						<a class="nav-link" data-widget="pushmenu" href="#" role="button">
+							<i class="fas fa-bars"></i>
+						</a>
+					</li>
+				</ul>
+				<!-- Right navbar links -->
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item">
+						<a class="nav-link" data-widget="fullscreen" href="#" role="button">
+							<i class="fas fa-expand-arrows-alt"></i>
+						</a>
+					</li>
+					<li class="nav-item dropdown pe-3">
+
+						<a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-toggle="dropdown">
+							<span class="fa fa-user"></span>
+							<span class="d-none d-md-block dropdown-toggle ps-2"></span>
+						</a>
+						<!-- End Profile Iamge Icon -->
+
+						<ul class="dropdown-menu dropdown-menu-md dropdown-menu-right dropdown-menu-arrow profile">
+							<li class="dropdown-header">
+								<h6>{{app.user.username}}</h6>
+								<span>{{app.user.email}}</span>
+							</li>
+							<li>
+								<hr class="dropdown-divider">
+							</li>
+							<li>
+								<hr class="dropdown-divider">
+							</li>
+							<li>
+								<a class="dropdown-item d-flex align-items-center" href="{{path('app_logout')}}">
+									<i class="fa-solid fa-right-from-bracket mr-2"></i>
+									<span>Déconnexion</span>
+								</a>
+							</li>
+						</ul>
+						<!-- End Profile Dropdown Items -->
+					</li>
+					<!-- End Profile Nav -->
+				</ul>
+			</nav>
+			<!-- /.navbar -->
+			{% include "sidebar.html.twig" %}
+			<!-- Content Wrapper. Contains page content -->
+			<div
+				class="content-wrapper">
+				<!-- Content Header (Page header) -->
+				<div class="container-fluid">
+					{% for type, messages in app.flashes %}
+						{% for message in messages %}
+							<div id="toast-container" class="toast-top-right">
+								<div class="toast toast-{{ type }}" aria-live="polite" style="">
+									<div class="toast-message">
+										{{ message}}
+									</div>
+								</div>
+							</div>
+						{% endfor %}
+					{% endfor %}
+					<div class="p-1">
+						<h1 id="header-title" class="text-dark"> {% block header %}{% endblock %}
+							</h1>
+
+						</div>
+						<hr>
+						<!-- /.content-header -->
+						<!-- Main content -->
+							<div class="content"> <div class=""> {% block body %}{% endblock %}
+
+								<!-- /.row -->
+								</div>
+								<!-- /.container-fluid -->
+							</div>
+							<!-- /.content -->
+						</div>
+					</div>
+					<!-- /.content-wrapper -->
+					<!-- Main Footer -->
+					<footer
+						class="main-footer">
+						<!-- To the right -->
+						<div class="float-right d-none d-sm-inline"></div>
+						<!-- Default to the left -->
+						<strong>
+							Copyright &copy;
+							{{ "now"|date("Y") }}
+							.Tous droits réservés
+						</footer>
+					</div>
+					<!-- ./wrapper -->
+					<script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
+					<script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}} "></script>
+					<script src="{{asset('dist/js/adminlte.min.js')}} "></script>
+					<!-- SweetAlert2 -->
+					<script src="{{asset('plugins/sweetalert2/sweetalert2.min.js')}} "></script>
+					<!-- Toastr -->
+					<script src="{{asset('plugins/toastr/toastr.min.js')}} "></script>
+					<!-- Jquery confirm js -->
+					<script src="{{asset('https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js')}}"></script>
+					<script>
+						$(function () {
+$("#toast-container").fadeOut(8000);
+});
+					</script>
+					{% block scripts %}{% endblock %}
+					<!-- web pack encore scripts -->
+					{% block javascripts %}
+						{# {{ encore_entry_script_tags('app') }} #}
+					{% endblock %}
+				</body>
+			</body>
+		</html>

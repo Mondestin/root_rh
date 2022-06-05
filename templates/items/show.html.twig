@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Items
+{% endblock %}
+
+{% block body %}
+	<h1>La sous tâche</h1>
+	<a href="{{ path('app_items_index',{'id': task_id}) }}">
+		<button class="btn btn-sm btn-outline-primary">
+			<i class="fas fa-arrow-left"></i>
+			Retour à la liste</button>
+	</a>
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Name</th>
+				<td>{{ item.name }}</td>
+			</tr>
+			<tr>
+				<th>Desciption</th>
+				<td>{{ item.desciption }}</td>
+			</tr>
+			<tr>
+				<th>Status</th>
+				<td>{{ item.status }}</td>
+			</tr>
+		</tbody>
+	</table>
+
+{% endblock %}

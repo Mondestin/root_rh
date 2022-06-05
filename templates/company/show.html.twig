@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Company
+{% endblock %}
+
+{% block body %}
+<a class="mb-5" href="{{ path('app_company_index') }}">
+	<button class="btn btn-sm btn-outline-primary">
+		<i class="fas fa-arrow-left"></i>
+		Retour à la liste</button>
+</a>
+<div class="card mt-2 w-25">
+	<ul class="list-group list-group-flush">
+		<li class="list-group-item item-show">
+			Nom de l'entreprise
+			<span class="badge bg-primary">{{ company.companyName }}</span>
+		</li>
+		<li class="list-group-item item-show">Adresse
+			<span class="badge bg-primary">{{ company.adress }}</span>
+		</li>
+		<li class="list-group-item item-show">Téléphone
+			<span class="badge bg-primary">{{ company.phone }}</span>
+		</li>
+		<li class="list-group-item item-show">Email
+			<span class="badge bg-primary">{{ company.email }}</span>
+		</li>
+		<li class="list-group-item item-show">Siret
+			<span class="badge bg-primary">{{ company.siret }}</span>
+		</li>
+		<li class="list-group-item item-show">N° TVA
+			<span class="badge bg-primary">{{ company.tvaNo }}</span>
+		</li>
+		<li class="list-group-item item-show">Logo
+			<span class="badge bg-primary">{{ company.logo }}</span>
+		</li>
+		<li class="list-group-item item-show">Siteweb
+			<span class="badge bg-primary">{{ company.siteweb }}</span>
+		</li>
+	</ul>
+</div>
+<a href="{{ path('app_company_edit', {'id': company.id}) }}">
+	<button class="btn btn-warning btn-sm">
+		<i class="far fa-edit"></i>
+		Modifier</button>
+</a>
+{{ include('company/_delete_form.html.twig') }}
+{% endblock %}
+{% block scripts %}
+<script src="{{asset('js/delete-confirm.js')}} "></script>
+{% endblock %}

@@ -1,0 +1,8 @@
+<form id="form{{item.id}}" class="display-contents" method="post" action="{{ path('app_items_delete', {'id': item.id}) }}">
+	<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ item.id) }}">
+	<input type="hidden" name="task_id" value="{{ task_id}}">
+	<a data-id="form{{item.id}}" class="delete-data btn btn-danger btn-sm delete-btn" title="Supprimer">
+		<i class="fas fa-trash"></i>
+		Supprimer
+	</a>
+</form>

@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Employee
+{% endblock %}
+{% block header %}Employé{% endblock %}
+{% block body %}
+<a class="btn btn-sm btn-outline-primary" href="{{ path('app_employee_index') }}">
+	<i class="fas fa-arrow-left"></i>
+	Retour à la liste</a>
+<div class="card card-widget widget-user-2 shadow-sm w-50 mt-2">
+
+	<div class="widget-user-header bg-dark">
+		<div class="widget-user-image">
+			<img src="{{asset('uploads/employees/avatars/'~employee.employeePhoto)}}" class="img-circle"
+						alt="avatar" height="40px" width="40px">
+		</div>
+
+		<h3 class="widget-user-username">{{ employee.employeeName }} {{ employee.employeeSurname }}</h3>
+		<h5 class="widget-user-desc">{{ employee.employeeCode }}</h5>
+		<span class="widget-user-desc badge bg-success">{{employee.employeeStatus}}</span>
+	</div>
+	<div class="card-footer p-0 bg-white">
+		<ul class="nav flex-column">
+			<li class="nav-item">
+				<li class="nav-link">
+					Sexe <span class="float-right badge bg-secondary">{{ employee.employeeSexe }}</span>
+				</li>
+			</li>
+			<li class="nav-item">
+				<li class="nav-link">
+					DOB <span class="float-right badge bg-info">{{ employee.employeeDob ? employee.employeeDob|date('Y-m-d') : '' }}</span>
+				</li>
+			</li>
+			<li class="nav-item">
+				<li class="nav-link">
+					Date d'embauche <span class="float-right badge bg-info">{{ employee.hireDate ? employee.hireDate|date('Y-m-d') : '' }}</span>
+				</li>
+			</li>
+			<li class="nav-item">
+				<li class="nav-link">
+					Adresse email <span class="float-right badge bg-primary">{{ employee.employeeEmail }}</span>
+				</li>
+			</li>
+			<li class="nav-item">
+				<li class="nav-link">
+					Téléphone <span class="float-right badge bg-primary">{{ employee.employeePhone}}</span>
+				</li>
+			</li>
+			<li class="nav-item">
+				<li class="nav-link">
+					Adresse <span class="float-right badge bg-secondary">{{ employee.employeeAdress }}</span>
+				</li>
+			</li>
+		</ul>
+	</div>
+</div>
+<a href="{{ path('app_employee_edit', {'id': employee.id}) }}">
+	<button class="btn btn-warning btn-sm">
+		<i class="far fa-edit"></i>
+		Modifier</button>
+{{ include('employee/_delete_form.html.twig') }}
+{% endblock %}
+{% block scripts %}
+<script src="{{asset('js/delete-confirm.js')}} "></script>
+{% endblock %}

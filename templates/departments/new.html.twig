@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Departments
+{% endblock %}
+{% block header %}Créer un département
+{% endblock %}
+{% block body %}
+	<a href="{{ path('app_departments_index') }}">
+		<button class="btn btn-sm btn-outline-primary">
+			<i class="fas fa-arrow-left"></i>
+			Retour à la liste</button>
+	</a>
+	{{ include('departments/_form.html.twig') }}
+
+
+{% endblock %}

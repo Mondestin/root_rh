@@ -1,0 +1,120 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Calendrier et plannings de l'entreprise
+{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{asset('plugins/fullcalendar/main.min.css')}}">
+<link rel="stylesheet" href="{{asset('css/planning/calendar.css')}}">
+<script src="{{asset('plugins/fullcalendar/main.min.js')}}"></script>
+<script src="{{asset('plugins/fullcalendar/locales/fr.js')}}"></script>
+<link rel="stylesheet" href="{{asset('plugins/sweetalert2/sweetalert2.min.css')}}">
+</script>
+<link rel="stylesheet" href="{{asset('plugins/toastr/toastr.min.js')}}">
+</script>
+<!-- Select2 -->
+<link rel="stylesheet" href="{{asset('plugins/select2/css/select2.min.css')}}">
+<!-- summernote -->
+<link rel="stylesheet" href="{{asset('plugins/summernote/summernote-bs4.min.css')}}">
+{% endblock %}
+{% block header %}Plannings{% endblock %}
+{% block body %}
+<div class="calendar-container row">
+	<div class="col-md">
+		<div id="calendar"></div>
+	</div>
+	<div class="col-md-2">
+		<div class="sticky-top mb-3">
+			<div class="card">
+				<div class="card-header">
+					<h4 class="card-title text-capitalize text-secondary"><i class="fas fa-calendar"></i> évènement</h4>
+				</div>
+				<div class="card-body">
+
+					<div id="external-events">
+						<div class="external-event bg-primary ui-draggable ui-draggable-handle"
+							style="position: relative;">Reunion</div>
+						<div class="external-event bg-warning ui-draggable ui-draggable-handle"
+							style="position: relative;">Pause</div>
+						<div class="external-event bg-success ui-draggable ui-draggable-handle"
+							style="position: relative;">Repas</div>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="card">
+				<div class="card-header">
+					<h3 class="card-title text-secondary"> <i class="fas fa-circle-plus"></i> Créer</h3>
+				</div>
+				<div class="card-body">
+					<div class="btn-group" style="width: 100%; margin-bottom: 10px;">
+						<ul class="fc-color-picker" id="color-chooser">
+							<li>
+								<span class="text-primary">
+									<i class="fas fa-square"></i>
+								</span>
+							</li>
+							<li>
+								<span class="text-warning">
+									<i class="fas fa-square"></i>
+								</span>
+							</li>
+							<li>
+								<span class="text-success">
+									<i class="fas fa-square"></i>
+								</span>
+							</li>
+							<li>
+								<span class="text-danger">
+									<i class="fas fa-square"></i>
+								</span>
+							</li>
+							<li>
+								<span class="text-muted">
+									<i class="fas fa-square"></i>
+								</span>
+							</li>
+						</ul>
+					</div>
+
+					<div class="input-group">
+						<input id="new-event" type="text" class="form-control" placeholder="Ajouter un titre">
+						<div class="input-group-append">
+							<button id="add-new-event" type="button" class="btn btn-primary btn-sm"
+								style="background-color: rgb(0, 86, 179); border-color: rgb(0, 86, 179);">Ajouter</button>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+			{{ include("planning/eventEditForm.html.twig") }}
+		</div>
+	</div>
+</div>
+{{ include("planning/shareToAttendeesModal.html.twig") }}
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" src="{{asset('plugins/sweetalert2/sweetalert2.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('plugins/toastr/toastr.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('js/planning/calendarAjax.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/planning/calendarOptions.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/planning/calendar.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/planning/share.js') }}"></script>
+
+<!-- Page specific script -->
+<script src="{{asset('plugins/summernote/summernote-bs4.min.js')}}"></script>
+
+<!-- Select2 -->
+<script src="{{asset('plugins/select2/js/select2.full.min.js')}}"></script>
+
+<script>
+	$(function () {
+		// Initialize Select2 Elements
+		$('.share-with').select2();
+	})
+</script>
+{% endblock %}

@@ -1,0 +1,35 @@
+<form method="post" action="{{ path('planning_share') }}">
+    <div class="modal fade" id="modal-default" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Partager l'évènement</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="connectedUserEmail" value="{{ app.user.email }}" />
+                    <input type="hidden" name="planningId" id="planningIdInput" />
+                    <div class="form-group">
+                        <label>Recherchez un utilisateur</label>
+                        <select name="users[]" class="share-with form-control" multiple="multiple"
+                            data-placeholder="Ex: user@email.com" style="width: 100%;">
+                            {% for user in users %}
+                            <option value="{{ user.id }}">{{ user.email }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div id="sharedWith">
+                        <span class="text-sm">Partagé avec:</span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Annuler</button>
+                    <button type="submit" class="btn btn-secondary btn-sm"><i
+                            class="fas fa-share mr-1"></i>Partager</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
